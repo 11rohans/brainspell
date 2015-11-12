@@ -702,18 +702,9 @@ function render() {
 	// actually render the scene
 	renderer.render( scene, camera );
 }
-// download CSV function
-function downloadCSV() {
-    var filename=prompt("File name",filename);
-    var tmpRegions=JSON.parse(JSON.stringify(Regions));
-    for(var i=0;i<Regions.length;i++)
-        tmpRegions[i].path=Regions[i].path.exportJSON();
-    var json = JSON.stringify(tmpRegions);
-    var jsonData = 'data:text/json;charset=utf-8,'+encodeURIComponent(json);
-    var a = document.createElement('a');
-    a.href = jsonData;
-    a.download = filename+'.json';
-    document.body.appendChild(a);
-    a.click();
-}
 
+function result_to_csv() {
+	var outputString = "";
+	$('.paper-stuff a').each(function() { outputString += $(this).text() + ","; });
+	return outputString;
+}
