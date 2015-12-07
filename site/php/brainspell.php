@@ -576,19 +576,23 @@ function search_lucene($query)
 		*/
 		
 		// list article references
+		$titles="[";
 		$str='<ul class="paper-list">';
 		foreach($hits as $hit):
 			$str.="<li><div class=\"paper-stuff\">\n";
 			$str.="<h3><a href=\"".$rootdir."article/".$hit->PMID."\">";
 			$str.=$hit->Title."</a></h3>\n";
+			$titles.="\n".$hit->Title.",";
 			$str.="<p class=\"info\">".$hit->Reference." (".sprintf("%.0f",$hit->score*100)."%)</p>\n";
 			$str.="</div></li>\n";
 		endforeach;
 		$str=$str."</ul>\n";
+		$titles=$titles."'\n']\n";
 	}
 	else
 		$str="<p>The search <b>".$query."</b> did not match any articles.</p>";
 	
+	$num = count($hits);
 	$tmp=str_replace("<!--%SearchResultsNumber%-->",count($hits),$html);
 	$html=$tmp;
 	$tmp=str_replace("<!--%SearchResultsMultiplicity%-->",(count($hits)>1)?"s":"",$html);
@@ -610,8 +614,14 @@ function search_lucene($query)
 	else
 		$tmp=str_replace("<!--LoggedIn-->","0",$html);
 	$html=$tmp;
-	
+
+	$tmp=str_replace("<!--ArticleTitles-->", stripslashes($titles), $html);
+	//print stripcslashes($titles);
+	//$html=$tmp;
 	print $html;
+	//print $titles;
+
+	//$html=$tmp;
 }
 function getIndex_lucene()
 {

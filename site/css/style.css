@@ -368,3 +368,39 @@ a.nav:hover {
   right: 20px;
   bottom: 10px;
   padding: 0px; }
+
+.button {
+  color: white;
+  width: 180px;
+  margin: 5px;
+  margin-bottom: 20px;
+  float: right;
+  padding: 5px;
+  font-weight: 400;
+  border-radius: 4px;
+}
+
+#button_for_download {
+  background-color: #F8923C;
+}
+
+#button_for_download:hover {
+  background-color: #F8BA3C 
+}
+
+#button_for_upload {
+  background-color: #4BB0A5;
+}
+
+#button_for_upload:hover {
+  background-color: #5BD2C5;
+}
+
+#filename {
+    height: 30px;
+    position:relative;
+    top: 0;
+    right: 0;
+    z-index: 2;
+    display: none;
+}
