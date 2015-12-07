@@ -15,8 +15,11 @@ function result_to_csv() {
 	} else {
 		var filename = "SearchResult_" + getSearchString();
 	}
-	var csvfile = "Titles, Reference, \n";
+	var csvfile = "ID,Titles,Reference, \n";
 	$('.paper-stuff').each(function() { 
+		tempStr = $(this).find('a').attr('href');
+		articleID = tempStr.replace( /^\D+/g, '');
+		csvfile += articleID + ',';
 		csvfile += $(this).find('a').text() + ",";
 		csvfile += '"' + $(this).find('.info').text() + '", \n';
 	});
